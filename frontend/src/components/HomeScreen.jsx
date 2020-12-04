@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { sendMessage } from "../actions/messageActions";
+import { getMessage, sendMessage } from "../actions/messageActions";
 
 const HomeScreen = () => {
 
@@ -12,7 +12,9 @@ const HomeScreen = () => {
     // const [target, setTarget] = useState('anyone')
     
     const submitHandler = () => {
-        dispatch(sendMessage(name, message, image))
+        // dispatch(sendMessage(name, message, image))
+
+        dispatch(getMessage())
     }
 
   return (

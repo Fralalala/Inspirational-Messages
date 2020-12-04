@@ -2,21 +2,27 @@ import Message from "../model/Message.js";
 
 const addMessage = async (req, res) => {
   try {
+    const { iporigin } = req.headers;
     const { name, message } = req.body;
 
     let newMessage;
 
+    //With Picture
     if (req.file) {
       newMessage = await Message.create({
         name,
         profilePicSrc: req.file.location,
         profilePicKey: req.file.key,
         message,
+        ipOrigin: iporigin,
       });
+
+      //Without Picture
     } else {
       newMessage = await Message.create({
         name,
         message,
+        ipOrigin: iporigin,
       });
     }
 
@@ -38,27 +44,39 @@ const addMessage = async (req, res) => {
 
 const getMessage = async (req, res) => {
   try {
-    let randomUser;
+    const { ip } = req.headers;
 
-    await Message.countDocuments().exec((err, count) => {
-      var random = Math.floor(Math.random() * count);
+    await Message.countDocuments({ ipOrigin: { $ne: ip } }).exec(
+      (err, count) => {
+        var random = Math.floor(Math.random() * count);
 
-      Message.findOne()
-        .skip(random)
-        .exec((error, result) => {
-          if (error) {
-            res.status(400);
-            throw new Error("Error finding result");
-          }
+        Message.findOne({ ipOrigin: { $ne: ip } })
+          .skip(random)
+          .exec(async (error, result) => {
+            if (error) {
+              res.status(400);
+              throw new Error("Error finding result");
+            }
 
-          if(result === null) {
-            res.json({
-              msg: "There's no more messages :/ "
-            })
-          }
+            console.log(result);
 
-        });
-    });
+            if (result === null) {
+              res.json({
+                msg: "failed",
+              });
+            } else {
+              await Message.findByIdAndDelete(result._id);
+
+              res.json({
+                name: result.name,
+                profilePicSrc: result.profilePicSrc,
+                message: result.message,
+                msg: "success",
+              });
+            }
+          });
+      }
+    );
   } catch (error) {
     res.status(500).send(error);
   }
