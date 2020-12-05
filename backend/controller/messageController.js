@@ -1,3 +1,4 @@
+import { deleteObject } from "../middleware/s3Middleware.js";
 import Message from "../model/Message.js";
 
 const addMessage = async (req, res) => {
@@ -66,6 +67,10 @@ const getMessage = async (req, res) => {
               });
             } else {
               await Message.findByIdAndDelete(result._id);
+              
+              if(result.profilePicKey !== null) {
+                deleteObject(result.profilePicKey)
+              }
 
               res.json({
                 name: result.name,

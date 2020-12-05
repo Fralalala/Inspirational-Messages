@@ -39,4 +39,17 @@ const uploadObject = multer({
   },
 }).single("image");
 
-export { uploadObject };
+const deleteObject = (key) => {
+  var params = {
+    Bucket: "randmsgbucket",
+    Key: key,
+  };
+
+  s3.deleteObject(params, (err, data) => {
+    if (err) console.log(err, err.stack);
+    // an error occurred
+    else console.log(data); // successful response
+  });
+};
+
+export { uploadObject, deleteObject };
