@@ -1,10 +1,24 @@
 import React from 'react'
+import { Button, Container } from 'react-bootstrap'
+import { useDispatch } from "react-redux"
+import { filterMessage } from '../actions/filterActions'
 
 const SendScreen = () => {
+
+    const dispatch = useDispatch()
+
     return (
-        <div>
-            send screen
-        </div>
+        <Container>
+            
+            <Button 
+                onClick={() => {
+                    dispatch(filterMessage("this is some words with a bad word FUCK"))
+                }}
+            >
+                filter msg
+            </Button>
+
+        </Container>
     )
 }
 

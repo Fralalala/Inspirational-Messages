@@ -21,12 +21,12 @@ const Header = () => {
             <Fragment>
               <LinkContainer to="/send">
                 <Nav.Link>
-                  <i className="fas fa-search"></i> Send Messages!
+                <i className="fas fa-paper-plane" /> Send Message!
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/receive">
                 <Nav.Link>
-                  <i className="fas fa-user-circle"></i> Receive Messages!
+                <i className="fas fa-hand-holding-heart" /> Receive Message!
                 </Nav.Link>
               </LinkContainer>
             </Fragment>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, {  useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
@@ -20,7 +20,6 @@ const HomeScreen = () => {
 
   return (
     <Container fluid>
-
       <Row
         style={{
           height: "50vh",
@@ -94,24 +93,25 @@ const HomeScreen = () => {
         }}
         className="m-auto"
       >
-        <LinkContainer to="/send" >
+        <LinkContainer to="/send" style={{ padding: "20px" }}>
           <Button
             className="m-auto"
             style={{ width: "300px", height: "100px" }}
           >
-            Send a Message!
+            Send a Message! <i className="fas fa-paper-plane" />
           </Button>
         </LinkContainer>
 
-        <LinkContainer to="/receive" >
+        <LinkContainer to="/receive" style={{ padding: "20px" }}>
           <Button
             className="m-auto"
             style={{ width: "300px", height: "100px" }}
           >
-            Receive a Message!
+            Receive a Message! <i className="fas fa-hand-holding-heart" />
           </Button>
         </LinkContainer>
       </Row>
+
     </Container>
   );
 };
