@@ -11,8 +11,8 @@ const filterMessage = async (req, res) => {
       mode: "no-cors", // no-cors, *cors, same-origin
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "user-id": "coolkid21",
-        "api-key": "4cufiUEt9203nIdCBMWEJUNmnxAEMGtXCOJ9xj83rCCeSlFW",
+        "user-id": process.env.user-id,
+        "api-key": process.env.api-key,
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({

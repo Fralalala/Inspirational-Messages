@@ -12,7 +12,6 @@ export const filterMessage = (message) => async (dispatch) => {
 
     
 
-    console.log(data);
   } catch (error) {
     dispatch({ type: GETTING_MESSAGE_FAIL, payload: error });
   }
