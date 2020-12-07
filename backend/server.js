@@ -1,18 +1,23 @@
 import express from "express";
 import connectDB from "./config/db.js";
-import dotenv from "dotenv"
-import messageRoutes from './routes/messageRoutes.js'
-import path from "path"
+import dotenv from "dotenv";
+import messageRoutes from "./routes/messageRoutes.js";
+import filterRoutes from "./routes/filterRoutes.js";
+import path from "path";
+import fetch from "node-fetch";
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 
-connectDB()
+connectDB();
 
 app.use(express.json());
 
-app.use("/api/message", messageRoutes)
+app.use("/api/message", messageRoutes);
+
+app.use("/api/filter", filterRoutes);
+
 
 const __dirname = path.resolve();
 
@@ -28,6 +33,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`server running in ${PORT}`)) 
+app.listen(PORT, console.log(`server running in ${PORT}`));
