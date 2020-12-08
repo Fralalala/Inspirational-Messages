@@ -7,7 +7,7 @@ import {
   SENDING_MESSAGE_SUCCESS,
 } from "../constants/messageConstants";
 
-export const messageReducer = (state = { loading: false }, action) => {
+export const messageReducer = (state = { loading: false, message: {} }, action) => {
   switch (action.type) {
     case SENDING_MESSAGE_REQUEST:
     case GETTING_MESSAGE_REQUEST:
@@ -19,7 +19,7 @@ export const messageReducer = (state = { loading: false }, action) => {
     case GETTING_MESSAGE_SUCCESS:
       return {
         message: action.payload,
-        loading: true,
+        loading: false,
       };
 
     case SENDING_MESSAGE_SUCCESS:
