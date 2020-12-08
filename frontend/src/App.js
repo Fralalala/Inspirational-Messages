@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Header />
         <main>
-          <Container fluid className="p-0" >
+          <Container fluid className="p-0"  >
             <Route path="/send" component={SendScreen} />
             <Route path="/receive" component={ReceiveScreen} />
             <Route exact path="/" component={HomeScreen} />

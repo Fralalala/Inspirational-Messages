@@ -5,9 +5,9 @@ const addMessage = async (req, res) => {
   try {
     const { iporigin } = req.headers;
     const { name, message } = req.body;
-
+    
     let newMessage;
-
+console.log(message)
     //With Picture
     if (req.file) {
       newMessage = await Message.create({

@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
@@ -23,7 +23,7 @@ const HomeScreen = () => {
       <Row
         style={{
           height: "50vh",
-          background: "#d8d3cd",
+
           width: "60%",
         }}
         className="m-auto"
@@ -86,7 +86,7 @@ const HomeScreen = () => {
       <Row
         style={{
           height: "43.7vh",
-          background: "#e0ece4",
+
           width: "60%",
           justifySelf: "center",
           position: "relative",
@@ -111,7 +111,6 @@ const HomeScreen = () => {
           </Button>
         </LinkContainer>
       </Row>
-
     </Container>
   );
 };

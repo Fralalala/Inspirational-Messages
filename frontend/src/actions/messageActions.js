@@ -12,30 +12,36 @@ export const sendMessage = (name, message, image) => async (dispatch) => {
   try {
     dispatch({ type: SENDING_MESSAGE_REQUEST });
 
-    const {
-      data: { ip },
+    const { 
+      data: { ip }, 
     } = await axios.get("https://ipapi.co/json/");
 
     const config = {
       headers: {
-        ipOrigin : ip
+        ipOrigin : ip,
+        //fetch on filter api accepets a urlencoded type, so message in body cant be taken, (if I understood correctly)
+        message
       },
     };
 
-    var data = new FormData();
+    var formData = new FormData();
 
-    data.append("name", name);
-    data.append("message", message);
+    formData.append("name", name);
+    formData.append("message", message);
 
     if (image) {
-      data.append("image", image, image.name);
+      formData.append("image", image[0], image[0].name);
     }
 
-    await axios.post("/api/message", data, config);
+    const {data} = await axios.post("/api/message", formData, config);
 
-    dispatch({ type: SENDING_MESSAGE_SUCCESS });
+    if(data.error !== undefined) {
+      throw new Error(data.error)
+    }
+
+    dispatch({ type: SENDING_MESSAGE_SUCCESS }); 
   } catch (error) {
-    dispatch({ type: SENDING_MESSAGE_FAIL, payload: error });
+    dispatch({ type: SENDING_MESSAGE_FAIL, payload: error.message });
   }
 };
 

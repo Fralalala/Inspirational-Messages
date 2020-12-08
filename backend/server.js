@@ -2,9 +2,7 @@ import express from "express";
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 import messageRoutes from "./routes/messageRoutes.js";
-import filterRoutes from "./routes/filterRoutes.js";
 import path from "path";
-import fetch from "node-fetch";
 
 dotenv.config();
 
@@ -15,9 +13,6 @@ connectDB();
 app.use(express.json());
 
 app.use("/api/message", messageRoutes);
-
-app.use("/api/filter", filterRoutes);
-
 
 const __dirname = path.resolve();
 
