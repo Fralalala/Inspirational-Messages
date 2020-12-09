@@ -12,7 +12,7 @@ export const filter = async (req, res, next) => {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "user-id": "coolkid21",
-        "api-key": "4cufiUEt9203nIdCBMWEJUNmnxAEMGtXCOJ9xj83rCCeSlFW",
+        "api-key": "oQ8TvvcPkkFcNxbwSAz3P0lWoUzbeMJWPAYAOVSQs3Wlos4w",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
@@ -21,6 +21,7 @@ export const filter = async (req, res, next) => {
     });
 
     const obj = await response.json();
+
 
     if (obj["is-bad"] === true) {
       throw new Error("Youre saying bad words!");

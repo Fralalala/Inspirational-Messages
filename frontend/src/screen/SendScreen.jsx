@@ -9,19 +9,33 @@ import {
   Image,
   InputGroup,
   Row,
+  Spinner,
 } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../actions/messageActions";
 
 const SendScreen = () => {
+  const messageReducer = useSelector((state) => state.messageReducer);
+  const { error, message } = messageReducer;
 
   const [image, setImage] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSending, setIsSending] = useState(false)
+  const [info, setInfo] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [sendSuccess, setSendSuccess] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (message.msg !== undefined) {
+      if (message.msg === "success") {
+        setSendSuccess(true);
+      } else if (message.msg === "failed") {
+        setSendSuccess(false);
+      }
+    }
+  }, [message]);
 
   return (
     <Container>
@@ -38,6 +52,7 @@ const SendScreen = () => {
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
+                  required
                 />
               </InputGroup>
             </Card.Header>
@@ -54,13 +69,18 @@ const SendScreen = () => {
                   <Button
                     className="m-auto"
                     onClick={async () => {
-                        setIsSending(true);
-                        await dispatch(sendMessage(name, message, image));
-                        setIsSending(false);
+                      setIsSending(true);
+                      await dispatch(sendMessage(name, info, image));
+                      setIsSending(false);
                     }}
                     disabled={isSending}
                   >
-                    Send it away!
+                    Send it away! {""}
+                    <Spinner
+                      animation="grow"
+                      style={{ width: "20px", height: "20px" }}
+                      hidden={!isSending}
+                    />
                   </Button>
                 </Col>
               </Row>
@@ -69,10 +89,11 @@ const SendScreen = () => {
                 <FormControl
                   as="textarea"
                   rows={6}
-                  value={message}
+                  value={info}
                   onChange={(e) => {
-                    setMessage(e.target.value);
+                    setInfo(e.target.value);
                   }}
+                  required
                 />
               </InputGroup>
             </Card.Body>
@@ -89,7 +110,6 @@ const SendScreen = () => {
 
                       if (e.target.files[0]) {
                         setImgUrl(URL.createObjectURL(e.target.files[0]));
-                        console.log(URL.createObjectURL(e.target.files[0]));
                       } else {
                         setImgUrl("");
                       }
@@ -101,6 +121,13 @@ const SendScreen = () => {
           </Card>
 
           <Image src={imgUrl} style={{ width: "100%" }} rounded />
+
+          {sendSuccess && (
+            <h1>Message successfully sent! Feel free to send again!</h1>
+          )}
+
+          {error && <h1>{error}</h1>}
+
         </Col>
       </Row>
     </Container>

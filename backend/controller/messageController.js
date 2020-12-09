@@ -59,8 +59,6 @@ const getMessage = async (req, res) => {
               throw new Error("Error finding result");
             }
 
-            console.log(result);
-
             if (result === null) {
               res.json({
                 msg: "failed",

@@ -21,18 +21,17 @@ const ReceiveScreen = () => {
     "https://cdna.artstation.com/p/assets/images/images/020/387/082/large/taejune-kim-afternoon-1600-mark.jpg?1567584205";
 
   useEffect(() => {
-    console.log(isFailed);
 
     if (message.msg !== undefined) {
       setIsStart(false);
       if (message.msg === "success") {
-        console.log("message is success");
+        console.log("Message is success");
         setName(message.name);
         setProfilePicSrc(message.profilePicSrc);
         setInfo(message.message);
         setMessageLoaded(true);
       } else {
-        console.log("message is failed");
+        console.log("Message is failed");
         setIsFailed(true);
       }
     }
