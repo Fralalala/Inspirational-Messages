@@ -8,7 +8,7 @@ const messageSchema = mongoose.Schema({
   profilePicSrc: {
     type: String,
     default:
-      "https://252radio.com/wp-content/uploads/2016/11/default-user-image.png",
+      "",
   },
   profilePicKey: {
     type:String,
