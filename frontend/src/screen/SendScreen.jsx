@@ -29,9 +29,9 @@ const SendScreen = () => {
 
   useEffect(() => {
     if (message.msg !== undefined) {
-      if (message.msg === "success") {
+      if (message.msg === "sendSuccess") {
         setSendSuccess(true);
-      } else if (message.msg === "failed") {
+      } else if (message.msg === "sendFailed") {
         setSendSuccess(false);
       }
     }

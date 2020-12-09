@@ -54,7 +54,7 @@ const HomeScreen = () => {
         <Col md={4}>
           <div style={{ marginTop: "75px", marginLeft: "50px" }}>
             <h1 className="mb-4" style={{ fontSize: "3.5rem" }}>
-              Receiving words words
+              Receive Messages!
             </h1>
 
             <h5 style={{ fontSize: "1.8rem" }}>
@@ -86,7 +86,6 @@ const HomeScreen = () => {
       <Row
         style={{
           height: "43.7vh",
-
           width: "60%",
           justifySelf: "center",
           position: "relative",

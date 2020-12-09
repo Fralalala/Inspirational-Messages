@@ -26,16 +26,24 @@ export const messageReducer = (state = { loading: false, message: {} }, action) 
       return {
         
         loading: false,
-        message: {msg: "success"}
+        message: {msg: "sendSuccess"}
       };
 
     case SENDING_MESSAGE_FAIL:
+      
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        message: {msg: "sendFailed"}
+      };
+
     case GETTING_MESSAGE_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
-        message: {msg: "failed"}
+        message: {msg: "getFailed"}
       };
 
     default:

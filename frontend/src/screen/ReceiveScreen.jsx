@@ -22,15 +22,15 @@ const ReceiveScreen = () => {
 
   useEffect(() => {
 
-    if (message.msg !== undefined) {
+    if (message.msg !== undefined && (message.msg === "getSuccess" || message.msg === "getFailed")) {
       setIsStart(false);
-      if (message.msg === "success") {
+      if (message.msg === "getSuccess") {
         console.log("Message is success");
         setName(message.name);
         setProfilePicSrc(message.profilePicSrc);
         setInfo(message.message);
         setMessageLoaded(true);
-      } else {
+      } else if(message.msg === "getFailed"){
         console.log("Message is failed");
         setIsFailed(true);
       }
@@ -106,6 +106,7 @@ const ReceiveScreen = () => {
               style={{ fontSize: "400px", marginBottom: "20px" }}
             ></i>
             <h1>We dont have any available messages, try sending one!</h1>
+            <small>Ps. You wont get the messages you sent*</small>
           </Col>
         )}
       </Row>

@@ -7,7 +7,7 @@ const addMessage = async (req, res) => {
     const { name, message } = req.body;
 
     let newMessage;
-    
+
     //With Picture
     if (req.file) {
       newMessage = await Message.create({
@@ -58,10 +58,10 @@ const getMessage = async (req, res) => {
               res.status(400);
               throw new Error("Error finding result");
             }
-
+            
             if (result === null) {
               res.json({
-                msg: "failed",
+                msg: "getFailed",
               });
             } else {
               await Message.findByIdAndDelete(result._id);
