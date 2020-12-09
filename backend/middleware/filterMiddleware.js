@@ -1,4 +1,7 @@
 import fetch from "node-fetch";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 export const filter = async (req, res, next) => {
   try {
@@ -11,8 +14,8 @@ export const filter = async (req, res, next) => {
       mode: "no-cors", // no-cors, *cors, same-origin
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "user-id": "coolkid21",
-        "api-key": "oQ8TvvcPkkFcNxbwSAz3P0lWoUzbeMJWPAYAOVSQs3Wlos4w",
+        "user-id": process.env.userId,
+        "api-key": process.env.apiKey,
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
