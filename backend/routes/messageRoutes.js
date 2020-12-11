@@ -9,4 +9,12 @@ const router = express.Router();
 // api/message
 router.route("/").post(filter, uploadObject, addMessage).get(getMessage);
 
+router.route("/count").get(async (req,res) => {
+    const obj = await Count.findOne({})
+
+    res.json({
+        count: obj.messageCount
+    })
+})
+
 export default router;

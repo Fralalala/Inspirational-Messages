@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { getMessage, sendMessage } from "../actions/messageActions";
-
+import axios from "axios"
 
 
 const HomeScreen = () => {
@@ -13,6 +13,14 @@ const HomeScreen = () => {
   const [name, setName] = useState("Sedna");
   const [message, setMessage] = useState(" Hey there, go kill urself");
   const [count, setCount] = useState("Loading...");
+
+  useEffect(async () => {
+    
+    const {data} = await axios.get("/api/message/count", {})
+
+    setCount(data.count)
+
+  }, [])
 
   return (
     <Container fluid>
@@ -89,11 +97,7 @@ const HomeScreen = () => {
           <h1  >Number of Messages Sent: {count}</h1>
         </Col>
 
-        <Button onClick={async () => {
-          
-        }} >
-          TEST
-        </Button>
+
 
       </Row>
 
