@@ -25,7 +25,6 @@ export const filter = async (req, res, next) => {
 
     const obj = await response.json();
 
-
     if (obj["is-bad"] === true) {
       throw new Error("Youre saying bad words!");
     } else if (obj["is-bad"] === false) {
@@ -38,6 +37,8 @@ export const filter = async (req, res, next) => {
       throw new Error("Something went wrong, please try again");
     }
   } catch (error) {
+    
+console.log("obj")
     res.json({
       error: error.message,
     });

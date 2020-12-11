@@ -1,4 +1,5 @@
 import { deleteObject } from "../middleware/s3Middleware.js";
+import Count from "../model/Count.js";
 import Message from "../model/Message.js";
 
 const addMessage = async (req, res) => {
@@ -26,6 +27,10 @@ const addMessage = async (req, res) => {
         ipOrigin: iporigin,
       });
     }
+
+    const temp = await Count.findOne({})
+
+    const obj = await Count.findOneAndUpdate({}, {messageCount : temp.messageCount + 1 })
 
     if (newMessage) {
       res.json({

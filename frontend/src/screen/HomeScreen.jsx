@@ -89,10 +89,10 @@ const HomeScreen = () => {
           <h1  >Number of Messages Sent: {count}</h1>
         </Col>
 
-        <Button onClick={() => {
-
+        <Button onClick={async () => {
+          
         }} >
-          TESTx`
+          TEST
         </Button>
 
       </Row>
