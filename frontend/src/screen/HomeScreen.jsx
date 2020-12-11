@@ -4,19 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { getMessage, sendMessage } from "../actions/messageActions";
 
+
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const [image, setImage] = useState();
   const [name, setName] = useState("Sedna");
   const [message, setMessage] = useState(" Hey there, go kill urself");
-  // const [target, setTarget] = useState('anyone')
-
-  const submitHandler = () => {
-    // dispatch(sendMessage(name, message, image))
-
-    dispatch(getMessage());
-  };
+  const [count, setCount] = useState("Loading...");
 
   return (
     <Container fluid>
@@ -85,7 +81,24 @@ const HomeScreen = () => {
 
       <Row
         style={{
-          height: "43.7vh",
+          width: "60%",
+        }}
+        className="m-auto"
+      >
+        <Col style={{ marginLeft: "50px", marginBottom: "50px" }}>
+          <h1  >Number of Messages Sent: {count}</h1>
+        </Col>
+
+        <Button onClick={() => {
+
+        }} >
+          TESTx`
+        </Button>
+
+      </Row>
+
+      <Row
+        style={{
           width: "60%",
           justifySelf: "center",
           position: "relative",
