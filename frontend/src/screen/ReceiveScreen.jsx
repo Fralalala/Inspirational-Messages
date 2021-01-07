@@ -21,16 +21,23 @@ const ReceiveScreen = () => {
     "https://cdna.artstation.com/p/assets/images/images/020/387/082/large/taejune-kim-afternoon-1600-mark.jpg?1567584205";
 
   useEffect(() => {
+    console.log(message)
+    console.log(message.msg !== undefined)
+    console.log(message.msg === "success")
+    console.log(message.msg === "getFailed")
 
-    if (message.msg !== undefined && (message.msg === "getSuccess" || message.msg === "getFailed")) {
+    if (
+      message.msg !== undefined && 
+      (message.msg === "success" || message.msg === "getFailed")
+    ) {
       setIsStart(false);
-      if (message.msg === "getSuccess") {
+      if (message.msg === "success") {
         console.log("Message is success");
         setName(message.name);
         setProfilePicSrc(message.profilePicSrc);
         setInfo(message.message);
         setMessageLoaded(true);
-      } else if(message.msg === "getFailed"){
+      } else if (message.msg === "getFailed") {
         console.log("Message is failed");
         setIsFailed(true);
       }
@@ -98,6 +105,16 @@ const ReceiveScreen = () => {
             </Card>
           </Col>
         )}
+
+        <Button
+          onClick= {
+            () => {
+              console.log(message)
+            }
+          }
+        >
+          TEST
+        </Button>
 
         {isFailed === true && (
           <Col style={{ textAlign: "center" }}>
